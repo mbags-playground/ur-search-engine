@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      input {
+        padding: 8px;
+      }
+
+      button {
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #007bff;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Search Page</h1>
+      <form action="/search" method="get">
+        <input type="text" name="query" placeholder="Enter your search query" />
+        <button type="submit">Search</button>
+      </form>
+      {% if results %}
+      <h2>Search Results:</h2>
+      <ul>
+        {% for result in results %}
+        <li><a href="{{ result.url }}">{{ result.title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </body>
+</html>
